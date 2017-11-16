@@ -1,17 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet } from 'react-native';
-
 import { Toolbar } from 'react-native-material-ui';
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 16,
+        paddingTop: 24,
     },
 });
 
 const propTypes = {
-    //navigator: PropTypes.object.isRequired,
-    //route: PropTypes.object.isRequired,
+ 
 };
 
 class Searchbar extends Component {
@@ -24,7 +22,7 @@ class Searchbar extends Component {
                         searchable={{
                             autoFocus: true,
                             placeholder: 'Search',
-                            onSearchPressed: {},
+                             // method for passing input value to axios get params 
                         }}
                     />
                 </View>

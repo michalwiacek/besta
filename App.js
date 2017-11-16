@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
-import Searchbar from './Searchbar';
-import List from './List';
+import Searchbar from './components/Searchbar';
+import RecipeList from './components/RecipeList';
 
 const uiTheme = {
   palette: {
-      primaryColor: COLOR.green500,
+      primaryColor: COLOR.blueGrey500,
   },
   toolbar: {
       container: {
@@ -18,12 +18,14 @@ const uiTheme = {
 export default class App extends React.Component {
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
-      <View>
-        <Searchbar /></View>
-      <View>
-        <List />
-      </View></ThemeProvider>
+      <ThemeProvider uiTheme={uiTheme} style={styles.container}>
+        <View>
+          <Searchbar />
+        </View>
+        <View>
+          <RecipeList />
+        </View>
+      </ThemeProvider>
     );
   }
 }
