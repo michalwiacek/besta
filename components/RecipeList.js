@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
-import axios from 'axios';
 import RecipeDetail from './RecipeDetail';
 
 class RecipeList extends Component {
-    state = { recipes: [] };
-
     componentWillMount() {
-            axios.get('https://recipepuppy.com/api/?q=milk')
-            .then(response => this.setState({ recipes: response.data }));
+        const ds = new ScrollView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2
+        });
+
+        this.dataSource = ds.cloneWithRows(this.props.recipes);
     }
 
-    renderRecipes() {
-        return this.state.recipes.map(recipe => 
-        <RecipeDetail key={recipe.title} recipe={recipe} />
-        );
+    renderRecipes(recipe) {
+        return <RecipeDetail recipe={recipe} />;
     }
 
     render() {
         console.log(this.state);
 
         return (
-            <ScrollView>
-                {this.renderRecipes()}
-            </ScrollView>
+            <ScrollView renderRecipes={this.renderRecipes} />
         );
     }
 }
+const mapStateToProps = state => {
+    return { recipes: state.recipes };
+};
 
-export default RecipeList;
+export default connect(mapStateToProps, null)(RecipeList);

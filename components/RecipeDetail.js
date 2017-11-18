@@ -1,31 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 
-const RecipeDetail = ({ onPress, recipe }) => {
-    const { title, ingredients, thumbnail } = recipe;
+class RecipeDetail extends Component {
+    render() {
+    let { recipe } = this.props;
 
     const { thumbnailStyle, headerContentStyle, thumbnailContainerStyle, headerTextStyle } = styles;
 
     return (
-        <Card onPress={onPress}>
+        <Card onPress>
             <CardSection>
                 <View style={thumbnailContainerStyle}>
                     <Image 
                     style={thumbnailStyle}
-                    source={{ uri: thumbnail }}
+                    source={{ uri: recipe.thumbnail }}
                     />
                 </View>
                 <View style={headerContentStyle}>
-                    <Text style={headerTextStyle}>{title}</Text>
-                    <Text>{ingredients}</Text>
+                    <Text style={headerTextStyle}>{recipe.title}</Text>
+                    <Text>{recipe.ingredients}</Text>
                 </View>
             </CardSection>
         </Card>
     );
-};
-
+}
+}
 const styles = {
     headerContentStyle: {
         flexDirection: 'column',
